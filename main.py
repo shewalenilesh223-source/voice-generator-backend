@@ -41,11 +41,25 @@ class GenerateRequest(BaseModel):
     language: str = Field(default="hi")
     unlocked_minutes: int = Field(default=4, ge=1, le=5)
 
-async def _process_tts_job(job_id: str, clean_text: str, language: str, speed: float):
+async def _process_tts_job(
+    job_id: str,
+    clean_text: str,
+    language: str,
+    speed: float,
+    base_voice: str,
+    category: str,
+):
     JOBS[job_id]["status"] = "processing"
     async with CONCURRENCY_LOCK:
         try:
-            audio_id = await asyncio.to_thread(synthesize_speech, clean_text, language, speed)
+            audio_id = await asyncio.to_thread(
+                synthesize_speech,
+                clean_text,
+                language,
+                speed,
+                base_voice,
+                category,
+            )
             JOBS[job_id]["status"] = "completed"
             JOBS[job_id]["audio_id"] = audio_id
             JOBS[job_id]["audio_url"] = f"/audio/{audio_id}"
@@ -85,7 +99,15 @@ async def create_generation_job(req: GenerateRequest, request: Request, backgrou
     job_id = uuid.uuid4().hex
     JOBS[job_id] = {"job_id": job_id, "status": "queued", "voice_id": req.voice_id}
 
-    background_tasks.add_task(_process_tts_job, job_id, clean_text, req.language or preset["language"], preset["speed"])
+    background_tasks.add_task(
+        _process_tts_job,
+        job_id,
+        clean_text,
+        req.language or preset["language"],
+        preset["speed"],
+        preset["base_voice"],
+        preset["category"],
+    )
     return {"job_id": job_id, "status": "queued", "poll_url": f"/jobs/{job_id}"}
 
 @app.get("/jobs/{job_id}")

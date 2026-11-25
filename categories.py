@@ -1,94 +1,72 @@
 from voice_registry import REAL_VOICES
 
 CATEGORY_PLAN = [
-    ("Girl", 45),
-    ("Woman", 35),
-    ("Boy", 45),
-    ("Man", 35),
-    ("Cartoon", 20),
-    ("Horror", 20),
+    ("Natural", 20),
+    ("Comedy", 10),
+    ("Cinematic", 5),
+    ("Storytelling", 5),
+    ("International", 5),
+    ("Special", 5),
 ]
 
-US_VOICE_SEEDS = [
-    ("liva", "Liva", "Soft & Sweet", "Girl", "hi_female_sweet", 1.04),
-    ("kai", "Kai", "Energetic Youth", "Boy", "en_male_warm", 1.08),
-    ("teny", "Teny", "Cute & Bubbly", "Girl", "en_female_clear", 1.12),
-    ("rex", "Rex", "Deep Alpha", "Man", "hi_male_deep", 0.90),
-    ("aria", "Aria", "Warm Natural", "Woman", "en_female_clear", 0.98),
-    ("axel", "Axel", "Cool Gamer", "Boy", "en_male_warm", 1.05),
-    ("luna", "Luna", "Dreamy Story", "Girl", "hi_female_sweet", 0.94),
-    ("damon", "Damon", "Dark Villain", "Horror", "hi_male_deep", 0.85),
-    ("nova", "Nova", "Trending Reels", "Girl", "en_female_clear", 1.10),
-    ("leo", "Leo", "Funny Creator", "Cartoon", "en_male_warm", 1.16),
-    ("zora", "Zora", "Bold & Classy", "Woman", "hi_female_sweet", 0.96),
-    ("zane", "Zane", "Smooth Podcast", "Man", "en_male_warm", 0.95),
-    ("chloe", "Chloe", "Sassy Bestie", "Girl", "en_female_clear", 1.08),
-    ("blaze", "Blaze", "Action Hero", "Man", "hi_male_deep", 0.96),
-    ("maya", "Maya", "Calm Narrator", "Woman", "mr_female_natural", 0.95),
-    ("milo", "Milo", "Playful Kid", "Cartoon", "hi_male_deep", 1.18),
-    ("bella", "Bella", "Gentle Whisper", "Girl", "hi_female_sweet", 0.92),
-    ("knox", "Knox", "True Crime", "Man", "en_male_warm", 0.88),
-    ("nori", "Nori", "Anime Star", "Cartoon", "en_female_clear", 1.20),
-    ("orion", "Orion", "Shadow Ghost", "Horror", "en_male_warm", 0.82),
-    ("skyla", "Skyla", "Bright Morning", "Girl", "en_female_clear", 1.05),
-    ("jace", "Jace", "Street Vlog", "Boy", "hi_male_deep", 1.04),
-    ("elena", "Elena", "Elegant Host", "Woman", "en_female_clear", 0.97),
-    ("raven", "Raven", "Cursed Witch", "Horror", "hi_female_sweet", 0.84),
-    ("clara", "Clara", "British Charm", "Woman", "en_female_clear", 0.99),
-    ("julian", "Julian", "Tech Reviewer", "Man", "en_male_warm", 1.02),
-    ("ruby", "Ruby", "Cheerful Vibe", "Girl", "hi_female_sweet", 1.09),
-    ("atlas", "Atlas", "Heavy Trailer", "Man", "hi_male_deep", 0.88),
-    ("ivy", "Ivy", "Mystic Fairy", "Cartoon", "hi_female_sweet", 1.15),
-    ("drake", "Drake", "Midnight Fear", "Horror", "hi_male_deep", 0.83),
-    ("hazel", "Hazel", "Cozy Evening", "Woman", "mr_female_natural", 0.96),
-    ("finn", "Finn", "Fast Comedy", "Boy", "en_male_warm", 1.14),
-    ("sienna", "Sienna", "Luxury Ad", "Woman", "en_female_clear", 0.95),
-    ("cole", "Cole", "Chill Buddy", "Boy", "mr_male_natural", 1.00),
-    ("freya", "Freya", "Nordic Queen", "Woman", "en_female_clear", 0.93),
-    ("ryder", "Ryder", "Turbo Racer", "Boy", "en_male_warm", 1.11),
-    ("stella", "Stella", "Pop Star", "Girl", "en_female_clear", 1.07),
-    ("vance", "Vance", "Grim Reaper", "Horror", "en_male_warm", 0.80),
-    ("naomi", "Naomi", "News Anchor", "Woman", "hi_female_sweet", 1.00),
-    ("troy", "Troy", "Stadium Hype", "Man", "hi_male_deep", 1.06),
+FEATURED_PRESETS = [
+    {"id": "lira_natural", "name": "Lira", "tagline": "Sweet & Clear", "category": "Natural", "base_id": "hi_female_sweet", "speed": 1.0},
+    {"id": "lucas_natural", "name": "Lucas", "tagline": "Warm Podcast", "category": "Natural", "base_id": "en_male_warm", "speed": 0.98},
+    {"id": "damon_cinema", "name": "Damon", "tagline": "True Crime", "category": "Cinematic", "base_id": "en_male_warm", "speed": 0.90},
+    {"id": "marcus_cinema", "name": "Marcus", "tagline": "Motivational", "category": "Cinematic", "base_id": "hi_male_deep", "speed": 0.95},
+    {"id": "leo_comedy", "name": "Leo", "tagline": "Aussie Creator", "category": "Comedy", "base_id": "en_male_warm", "speed": 1.12},
+    {"id": "julian_natural", "name": "Julian", "tagline": "Tech Reviewer", "category": "Natural", "base_id": "en_male_warm", "speed": 1.05},
+    {"id": "oliver_story", "name": "Oliver", "tagline": "Heartfelt Story", "category": "Storytelling", "base_id": "hi_male_deep", "speed": 0.92},
+    {"id": "atlas_cinema", "name": "Atlas", "tagline": "Bold Alpha", "category": "Cinematic", "base_id": "hi_male_deep", "speed": 0.92},
+    {"id": "clara_intl", "name": "Clara", "tagline": "British Elegance", "category": "International", "base_id": "en_female_clear", "speed": 0.98},
+    {"id": "chloe_comedy", "name": "Chloe", "tagline": "Trending Reels", "category": "Comedy", "base_id": "hi_female_sweet", "speed": 1.15},
+    {"id": "elena_story", "name": "Elena", "tagline": "Calm & Soothing", "category": "Storytelling", "base_id": "hi_female_sweet", "speed": 0.90},
+    {"id": "maya_natural", "name": "Maya", "tagline": "Smart Explainer", "category": "Natural", "base_id": "mr_female_natural", "speed": 1.02},
 ]
 
-STYLE_SUFFIXES = [
-    ("Lite", 0.00),
-    ("Pro", -0.04),
-    ("Vibe", 0.05),
-    ("Max", -0.07),
-    ("Studio", 0.02),
-]
-
-def build_200_categories():
+def build_50_categories():
     presets = []
     used_ids = set()
 
-    for suffix_label, speed_delta in STYLE_SUFFIXES:
-        for base_slug, display_name, tagline, category, base_id, base_speed in US_VOICE_SEEDS:
-            if len(presets) >= 200:
-                break
-            preset_id = f"{base_slug}_{suffix_label.lower()}"
-            if preset_id in used_ids:
-                continue
+    for item in FEATURED_PRESETS:
+        base = REAL_VOICES[item["base_id"]]
+        presets.append({
+            "id": item["id"],
+            "name": item["name"],
+            "tagline": item["tagline"],
+            "category": item["category"],
+            "base_voice": item["base_id"],
+            "language": base["language"],
+            "gender": base["gender"],
+            "speed": item["speed"],
+            "is_preset": True,
+        })
+        used_ids.add(item["id"])
 
+    base_keys = list(REAL_VOICES.keys())
+    counter = 1
+    for cat_name, target_count in CATEGORY_PLAN:
+        current_count = sum(1 for p in presets if p["category"] == cat_name)
+        while current_count < target_count:
+            base_id = base_keys[counter % len(base_keys)]
             base = REAL_VOICES[base_id]
-            final_name = display_name if suffix_label == "Lite" else f"{display_name} {suffix_label}"
-            final_speed = round(max(0.78, min(1.28, base_speed + speed_delta)), 2)
-
-            presets.append({
-                "id": preset_id,
-                "name": final_name,
-                "tagline": f"{tagline} • {category}",
-                "category": category,
-                "base_voice": base_id,
-                "language": base["language"],
-                "gender": base["gender"],
-                "speed": final_speed,
-                "is_preset": True,
-            })
-            used_ids.add(preset_id)
+            preset_id = f"{cat_name.lower()}_voice_{counter:02d}"
+            if preset_id not in used_ids:
+                presets.append({
+                    "id": preset_id,
+                    "name": f"{cat_name} Voice {current_count + 1}",
+                    "tagline": f"{cat_name} • {base['gender']}",
+                    "category": cat_name,
+                    "base_voice": base_id,
+                    "language": base["language"],
+                    "gender": base["gender"],
+                    "speed": round(0.92 + (counter % 4) * 0.06, 2),
+                    "is_preset": True,
+                })
+                used_ids.add(preset_id)
+                current_count += 1
+            counter += 1
 
     return presets
 
-ALL_PRESETS = {p["id"]: p for p in build_200_categories()}
+ALL_PRESETS = {p["id"]: p for p in build_50_categories()}
